@@ -127,42 +127,21 @@ def game_hash
 end
 
 def num_points_scored(name)
-  flag = false
-  
-  for i in game_hash[:home][:players]
-    if i[:player_name] == name
-      flag = true
-      return i[:points]
-    end
-  end
-  
-  if flag == false
-    for i in game_hash[:away][:players]
-      if i[:player_name] == name
-        flag = true
-        return i[:points]
-      end
-    end
-  end
+  game_hash.each{ |key, value|
+	  value[:players].each{ |element|
+		  if element[:player_name] == name
+			  return element[:points]
+		  end }}
 end
   
 def shoe_size(name)
-  flag = false
-  
-  for i in game_hash[:home][:players]
-    if i[:player_name] == name
-      flag = true
-      return i[:shoe]
-    end
-  end
-  
-  if flag == false
-    for i in game_hash[:away][:players]
-      if i[:player_name] == name
-        return i[:shoe]
-      end
-    end
-  end
+  game_hash.each{ |key, value|
+	value[:players].each{ |element|
+  	if element[:player_name] == name
+  			return element[:shoe]
+  	end 
+	  }
+  }
 end
 
 def team_colors(team)
